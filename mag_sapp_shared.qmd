@@ -15,7 +15,7 @@ library(here)
 library(janitor)
 library(usethis)
 use_git()
-usethis::use_github()
+
 
 siteNumbers <- c("14211720", "14211010", "14166000")
 parameterCd <- "00010" # water temperature
