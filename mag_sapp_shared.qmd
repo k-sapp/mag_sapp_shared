@@ -51,6 +51,18 @@ ggplot(temp_data, aes(x=Date, y=temp_C, color=site_no)) +
 
 ```
 
+## Alicia Magliato Analysis: August 
+
+```{r}
+# filter for August temperatures
+august_data <- subset(temp_data, month == "Aug")
+# fit a GLM model to see if there is a trend in August temperatures over time, separated by site
+august_model <- glm(temp_C ~ year*site_no, data = august_data)
+summary(august_model)
+```
+## Summary of Results
+
+In August, all three Willamette River sites show warming trends over 2010-2023. The reference site (14166000) warms at approximately 0.13°C per year. Site 14211010 warms significantly faster than the reference site, while site 14211720 does not show a statistically distinguishable difference in warming rate.
 
 
 
