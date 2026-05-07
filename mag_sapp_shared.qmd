@@ -63,11 +63,12 @@ summary(august_model)
 
 In August, all three Willamette River sites show warming trends over 2010-2023. The reference site (14166000) warms at approximately 0.13°C per year. Site 14211010 warms significantly faster than the reference site, while site 14211720 does not show a statistically distinguishable difference in warming rate.
 
+## Kalena Sapp Analysis: Feburary
 
 ```{r}
 library(tidyverse)
-# filter for July temperatures
+# filter for Feb temperatures
 feb_data <- subset(temp_data, month == "Feb")
-# fit a GLM model to see if there is a trend in feb temperatures over time, separated by site
+# fit a GLM model to see if there is a trend in Feb temperatures over time, separated by site
 feb_model <- glm(temp_C ~ year*site_no, data = feb_data)
 summary(feb_model)
