@@ -47,11 +47,10 @@ ggplot(temp_data, aes(x=Date, y=temp_C, color=site_no)) +
   labs(title="Stream Temperature at Willamette River Sites",
        x="Date", y="Temperature (°C)", color="Site Number") +
   theme_minimal()
-   # merge
+  
 ```
 
 ## Alicia Magliato Analysis: August
-=======
 
 ```{r}
 # filter for August temperatures
@@ -62,6 +61,8 @@ summary(august_model)
 ```
 
 
+## Kalena Sapp Analysis: February
+
 ```{r}
 library(tidyverse)
 # filter for Feb temperatures
@@ -70,3 +71,36 @@ feb_data <- subset(temp_data, month == "Feb")
 feb_model <- glm(temp_C ~ year*site_no, data = feb_data)
 summary(feb_model)
 ```
+
+## August and February Warming Trendlines 2010-2023 
+
+```{r}
+
+ggplot(temp_data, aes(x=Date, y=temp_C, color=site_no)) +
+  geom_line() +
+  labs(title="Stream Temperature at Willamette River Sites in February and August from 2010 to 2023",
+       x="Date", y="Temperature (°C)", color="Site Number") +
+  theme_minimal()
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
