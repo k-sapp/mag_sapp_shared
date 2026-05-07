@@ -121,7 +121,8 @@ ggplot(combined_data, aes(x = year, y = temp_C, color = site_no)) +
   geom_point(alpha = 0.4) +                 
   geom_smooth(method = "glm", se = FALSE) + 
   facet_wrap(~month, scales = "free_y") +   
-  labs(title = "Temperature Trends: August vs. February",
+  labs(title = "Stream Temperature Trends at Willamette River Sites:
+August vs. February",
        x = "Year",
        y = "Temperature (°C)",
        color = "Site Number") +
@@ -129,8 +130,9 @@ ggplot(combined_data, aes(x = year, y = temp_C, color = site_no)) +
 
 
 ```
+Figure 1: Comparison of water temperature trends in the Willamette River (2010–2023). August shows significant warming with localized acceleration at site 14211010, while February shows a uniform cooling trend across all monitoring locations.
 
-
-
+# Willamette River Sites Stream Temperature Trend Analysis
+There is a seasonal divergence in temperature trends at Willamette River sites. August temperatures are rising, consistent with global climate change and reduced summer flows. In contrast, February temperatures are cooling. This suggests that the drivers of water temperature including snow pack melt, reservoir releases may be occurring earlier due to warmer temperatures causing shorter winter seasons. 
 
 
