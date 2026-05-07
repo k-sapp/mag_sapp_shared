@@ -104,3 +104,33 @@ ggplot(temp_data, aes(x=Date, y=temp_C, color=site_no)) +
 
 
 
+
+
+
+
+
+
+
+
+
+```{r}
+combined_data <- temp_data |>
+  filter(month %in% c("Aug", "Feb"))
+
+ggplot(combined_data, aes(x = year, y = temp_C, color = site_no)) +
+  geom_point(alpha = 0.4) +                 
+  geom_smooth(method = "glm", se = FALSE) + 
+  facet_wrap(~month, scales = "free_y") +   
+  labs(title = "Temperature Trends: August vs. February",
+       x = "Year",
+       y = "Temperature (°C)",
+       color = "Site Number") +
+  theme_minimal()
+
+
+```
+
+
+
+
+
