@@ -1,11 +1,14 @@
 ---
-title: "mag_sapp_shared"
+title: "Assignment 2 ESM 262: Willamette River Temeprature Trends"
+author: "Alicia Magliato and Kalena Sapp"
 params:
   use_local: true 
   data_file: "temp_data.csv"
 ---
 
 ```{r}
+#| include: false
+
 #install.packages("dataRetrieval")
 library(dataRetrieval)
 library(tidyverse)
@@ -14,6 +17,12 @@ library(janitor)
 library(dplyr)
 library(usethis)
 use_git()
+
+```
+
+```{r}
+#| echo: true
+#| output: false
 
 siteNumbers <- c("14211720", "14211010", "14166000")
 parameterCd <- "00010" # water temperature
@@ -39,8 +48,9 @@ group_by(site_no) |>
   summarize(mean_temp = mean(temp_C, na.rm = TRUE), 
             max_temp = max(temp_C, na.rm = TRUE),
             min_temp = min(temp_C, na.rm = TRUE))
+```
 
-
+``` {r}
 # check by plotting
 ggplot(temp_data, aes(x=Date, y=temp_C, color=site_no)) +
   geom_line() +
@@ -59,9 +69,10 @@ august_data <- subset(temp_data, month == "Aug")
 august_model <- glm(temp_C ~ year*site_no, data = august_data)
 summary(august_model)
 ```
+
 ### Summary of August Results
 
-In August, all three Willamette River sites show warming trends over 2010-2023. The reference site (14166000) warms at approximately 0.130°C per year. Over the 13-year period, this amounts to an increase in temperature of approximately 1.69°C. This trend is highly statistically significant (p = 2e-16).Site 14211010 warms significantly faster (p = 0.00969) than the reference site at approximately 0.176°C per year (0.12975 + 0.04627). Site 14211720 does not warm significantly faster (p = 0.36581) than the reference site at approximately 0.146°C per year (0.12975 + 0.01619). 
+In August, all three Willamette River sites show warming trends over 2010-2023. The reference site (14166000) warms at approximately 0.130°C per year. Over the 13-year period, this amounts to an increase in temperature of approximately 1.69°C. This trend is highly statistically significant (p = 2e-16).Site 14211010 warms significantly faster (p = 0.00969) than the reference site at approximately 0.176°C per year (0.12975 + 0.04627). Site 14211720 does not warm significantly faster (p = 0.36581) than the reference site at approximately 0.146°C per year (0.12975 + 0.01619).
 
 ## Kalena Sapp Analysis: February
 
@@ -73,37 +84,12 @@ feb_data <- subset(temp_data, month == "Feb")
 feb_model <- glm(temp_C ~ year*site_no, data = feb_data)
 summary(feb_model)
 ```
-### Summary of February Results 
+
+### Summary of February Results
 
 In February, all three sites show a cooling trend in winter temperatures over 2010-2023. The reference site (14166000) cools at approximately 0.064°C per year. Over the 13-year period, this amounts to an decrease in temperature of approximately 0.84°C. This trend is highly statistically significant (p = 6.06e-06). Unlike August, there are no significant differences between sites in February. The interaction terms for both site 14211010 (p = 0.338) and site 14211720 (p = 0.833) are not significant. Site 14211010 cools at approximately 0.045°C per year (-0.064277 + 0.019204), and site 14211720 at approximately 0.060°C per year (-0.064277 + 0.004215), so neither rate is meaningfully different from the reference.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Willamette River Sites Stream Temperature Trend Analysis
 
 ```{r}
 combined_data <- temp_data |>
@@ -119,12 +105,8 @@ August vs. February",
        y = "Temperature (°C)",
        color = "Site Number") +
   theme_minimal()
-
-
 ```
+
 Figure 1: Comparison of water temperature trends in the Willamette River (2010–2023). August shows significant warming with localized acceleration at site 14211010, while February shows a uniform cooling trend across all monitoring locations.
 
-# Willamette River Sites Stream Temperature Trend Analysis
-There is a seasonal divergence in temperature trends at Willamette River sites. August temperatures are rising, consistent with global climate change and reduced summer flows. In contrast, February temperatures are cooling. This suggests that the drivers of water temperature including snow pack melt, reservoir releases may be occurring earlier due to warmer temperatures causing shorter winter seasons. 
-
-
+There is a seasonal divergence in temperature trends at Willamette River sites. August temperatures are rising, consistent with global climate change and reduced summer flows. In contrast, February temperatures are cooling. This suggests that the drivers of water temperature including snow pack melt, reservoir releases may be occurring earlier due to warmer temperatures causing shorter winter seasons.
