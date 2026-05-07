@@ -48,5 +48,12 @@ ggplot(temp_data, aes(x=Date, y=temp_C, color=site_no)) +
        x="Date", y="Temperature (°C)", color="Site Number") +
   theme_minimal()
 
-
 ```
+
+```{r}
+library(tidyverse)
+# filter for July temperatures
+feb_data <- subset(temp_data, month == "Feb")
+# fit a GLM model to see if there is a trend in feb temperatures over time, separated by site
+feb_model <- glm(temp_C ~ year*site_no, data = feb_data)
+summary(feb_model)
